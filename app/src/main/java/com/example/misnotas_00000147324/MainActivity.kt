@@ -13,10 +13,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val fab: com.google.android.material.floatingactionbutton.FloatingActionButton =
-            findViewById(R.id.fab)
-        val listview: ListView =
-            findViewById(R.id.listview)
+        val fab: com.google.android.material.floatingactionbutton.FloatingActionButton = findViewById(R.id.fab)
+        val listview: ListView = findViewById(R.id.listview)
         fab.setOnClickListener {
             var intent = Intent(this, AgregarNotaActivity::class.java)
             startActivityForResult(intent, 123)

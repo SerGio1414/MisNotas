@@ -18,14 +18,14 @@ class AgregarNotaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agregar_nota)
 
-        val btn_guardar: Button = findViewById(R.id.btnGuardar)
+        val btnGuardar: Button = findViewById(R.id.btnGuardar)
 
-        btn_guardar.setOnClickListener{
-            guardar_nota();
+        btnGuardar.setOnClickListener{
+            guardarNota();
         }
     }
 
-    fun guardar_nota(){
+    fun guardarNota(){
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
             != PackageManager.PERMISSION_GRANTED
         ){
@@ -55,24 +55,24 @@ class AgregarNotaActivity : AppCompatActivity() {
 
     public fun guardar(){
 
-        val et_titulo: EditText = findViewById(R.id.etTitulo)
-        val et_contenido: EditText = findViewById(R.id.etContenido)
+        val etTitulo: EditText = findViewById(R.id.etTitulo)
+        val etContenido: EditText = findViewById(R.id.etContenido)
 
-        var titulo = et_titulo.text.toString()
-        var cuerpo = et_contenido.text.toString()
+        var titulo = etTitulo.text.toString()
+        var cuerpo = etContenido.text.toString()
 
         if(titulo==""||cuerpo==""){
-            Toast.makeText(this, "Error: campos vacíos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
         }else{
             try{
                 val archivo = File(ubicacion(), titulo+".txt")
                 val fos = FileOutputStream(archivo)
                 fos.write(cuerpo.toByteArray())
                 fos.close()
-                Toast.makeText(this, "Se guardó el archivo en la carpeta pública", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Archivo guardado", Toast.LENGTH_SHORT).show()
 
             }catch (e: Exception){
-                Toast.makeText(this, "Error: no se guardó el archivo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error:Archivo no guardado", Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -81,7 +81,7 @@ class AgregarNotaActivity : AppCompatActivity() {
     }
 
     public fun ubicacion(): String {
-        val carpeta = File(getExternalFilesDir(null),"notas")
+        val carpeta = File(getExternalFilesDir(null),"Notas")
         if(!carpeta.exists()){
             carpeta.mkdir()
         }
